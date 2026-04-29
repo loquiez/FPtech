@@ -40,15 +40,6 @@ export default function Nav() {
             <a href="#contacts">Контакты</a>
           </div>
           <button
-            className="nav-cta"
-            onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <span>Оставить заявку</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
-          </button>
-          <button
             className="nav-hamburger"
             onClick={() => setMenuOpen(true)}
             aria-label="Открыть меню"
@@ -79,14 +70,6 @@ export default function Nav() {
           <a href="#features" onClick={close}>Возможности</a>
           <a href="#contacts" onClick={close}>Контакты</a>
         </nav>
-        <div className="nav-mobile-cta">
-          <a className="btn btn-primary" href="#cta" onClick={close}>
-            Оставить заявку
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
       </div>
     </>
   );

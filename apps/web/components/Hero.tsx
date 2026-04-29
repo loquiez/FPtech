@@ -23,12 +23,6 @@ export default function Hero() {
         </p>
 
         <div className="hero-cta reveal">
-          <a className="btn btn-primary" href="#cta">
-            Запросить демо
-            <svg className="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
-          </a>
           <a className="btn btn-ghost" href="#product">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polygon points="6,4 20,12 6,20" />
