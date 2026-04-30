@@ -25,11 +25,12 @@ if not bbox:
     raise SystemExit("logo has no non-transparent content in the left region")
 icon = left.crop(bbox)
 
-# Step 3: pad to a centered square so the icon sits in the middle of a
-# transparent canvas — browsers scale the whole canvas into the 16x16 tab
-# slot, so non-square sources letterbox awkwardly.
+# Step 3: pad to a centered square. Browsers downscale the entire canvas
+# into a tiny 16x16 slot — without breathing room around the glyph the
+# heart's outer curves visibly clip the edges in the tab bar.
+PADDING = 0.15  # fraction of the longest side, on each axis
 iw, ih = icon.size
-side = max(iw, ih)
+side = int(round(max(iw, ih) * (1 + PADDING * 2)))
 canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
 canvas.paste(icon, ((side - iw) // 2, (side - ih) // 2), icon)
 

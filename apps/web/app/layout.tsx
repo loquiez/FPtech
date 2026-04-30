@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Montserrat, Montserrat_Alternates } from 'next/font/google';
+import VpnWatcher from '@/components/VpnWatcher';
 import './globals.css';
 
 const fontSans = Montserrat({
@@ -27,7 +28,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" data-theme="dark" className={`${fontSans.variable} ${fontDisplay.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <VpnWatcher />
+      </body>
     </html>
   );
 }
