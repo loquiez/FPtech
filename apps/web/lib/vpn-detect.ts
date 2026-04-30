@@ -103,3 +103,20 @@ export function isPrivateIp(ip: string): boolean {
     /^172\.(1[6-9]|2\d|3[01])\./.test(ip)
   )
 }
+
+// Build an absolute URL for redirects. Reverse proxies (nginx without
+// `proxy_set_header Host $host`) leak the upstream host (localhost:3000) into
+// request.url, breaking redirects. Prefer x-forwarded-host / Host (when not
+// localhost), then SITE_URL env, then fall back to request.url.
+export function buildUrl(path: string, request: NextRequest): URL {
+  const forwardedHost = request.headers.get('x-forwarded-host')
+  const forwardedProto = request.headers.get('x-forwarded-proto')
+  const host = forwardedHost ?? request.headers.get('host')
+  if (host && !host.startsWith('localhost') && !host.startsWith('127.')) {
+    const proto = forwardedProto ?? 'https'
+    return new URL(path, `${proto}://${host}`)
+  }
+  const siteUrl = process.env.SITE_URL
+  if (siteUrl) return new URL(path, siteUrl)
+  return new URL(path, request.url)
+}
