@@ -28,7 +28,7 @@ icon = left.crop(bbox)
 # Step 3: pad to a centered square. Browsers downscale the entire canvas
 # into a tiny 16x16 slot — without breathing room around the glyph the
 # heart's outer curves visibly clip the edges in the tab bar.
-PADDING = 0.15  # fraction of the longest side, on each axis
+PADDING = 0.35  # fraction of the longest side, on each axis
 iw, ih = icon.size
 side = int(round(max(iw, ih) * (1 + PADDING * 2)))
 canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
